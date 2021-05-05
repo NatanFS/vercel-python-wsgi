@@ -8,12 +8,12 @@ const { createLambda } = require('@vercel/build-utils/lambda.js'); // eslint-dis
 const { log, pip, python } = require('./build-utils');
 
 
-exports.config = {
-  maxLambdaSize: '5mb',
-};
+// Runtime.version
+export const version = 2;
 
 
-exports.build = async ({ files, entrypoint, config }) => {
+// Runtime.build
+export const build = async ({ files, entrypoint, config }) => {
   log.title('Starting build');
   const systemReleaseContents = await readFile(
     path.join('/etc', 'system-release'),
@@ -69,3 +69,9 @@ exports.build = async ({ files, entrypoint, config }) => {
     [entrypoint]: lambda,
   };
 };
+
+
+// Runtime.analyze not implemented
+// Runtime.prepareCache not implemented
+// Runtime.shouldServe not implemented
+// Runtime.startDevServer not implemented
